@@ -1,16 +1,18 @@
 import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 
-export function CTASection() {
+interface CTASectionProps {
+    onNavigate?: (page: 'home' | 'careers', sectionId?: string) => void;
+}
+
+export function CTASection({ onNavigate }: CTASectionProps) {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="relative bg-amber-50 rounded-3xl overflow-hidden px-6 py-20 md:px-20 md:py-24 text-center border border-amber-100 shadow-xl shadow-amber-100/50">
           
-          {/* Background Gradients - Warmer and Lighter */}
+          {/* Background Gradients */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-             {/* Top Right Amber Glow */}
              <div className="absolute top-0 right-0 w-96 h-96 bg-amber-200/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-             {/* Bottom Left Subtle Glow */}
              <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/60 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
           </div>
 
@@ -29,11 +31,17 @@ export function CTASection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <button className="w-full sm:w-auto px-8 py-4 bg-amber-600 text-white rounded-xl font-bold text-lg hover:bg-amber-700 transition-all hover:scale-105 shadow-lg shadow-amber-600/25 flex items-center justify-center gap-2">
+              <button 
+                onClick={() => alert('Sign up flow placeholder')} // In real app, links to auth
+                className="w-full sm:w-auto px-8 py-4 bg-amber-600 text-white rounded-xl font-bold text-lg hover:bg-amber-700 transition-all hover:scale-105 shadow-lg shadow-amber-600/25 flex items-center justify-center gap-2"
+              >
                 Get Started for Free <ArrowRight className="w-5 h-5" />
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-bold text-lg hover:border-amber-200 hover:text-amber-700 hover:bg-amber-50/50 transition-all flex items-center justify-center gap-2 shadow-sm">
-                View All Plans
+              <button 
+                onClick={() => onNavigate?.('home', 'learning-tracks')}
+                className="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-bold text-lg hover:border-amber-200 hover:text-amber-700 hover:bg-amber-50/50 transition-all flex items-center justify-center gap-2 shadow-sm"
+              >
+                View Learning Tracks
               </button>
             </div>
 

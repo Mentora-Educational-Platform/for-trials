@@ -1,11 +1,27 @@
 import { Twitter, Linkedin, Instagram, Github, Send, Mail } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate: (page: 'home' | 'careers', sectionId?: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   const links = {
-    platform: ['Browse Mentors', 'Learning Tracks', 'Success Stories', 'Pricing', 'For Enterprise'],
-    resources: ['Blog', 'Community', 'Career Guide', 'Interview Prep', 'Help Center'],
-    company: ['About Us', 'Careers', 'Become a Mentor', 'Contact', 'Press Kit'],
-    legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Security']
+    platform: [
+        { label: 'Browse Mentors', action: () => onNavigate('home', 'opportunities') },
+        { label: 'Learning Tracks', action: () => onNavigate('home', 'learning-tracks') },
+        { label: 'Opportunities', action: () => onNavigate('home', 'opportunities') },
+        { label: 'Pricing', action: () => onNavigate('home', 'pricing') }
+    ],
+    company: [
+        { label: 'About Us', action: () => onNavigate('home') },
+        { label: 'Careers', action: () => onNavigate('careers') }, 
+        { label: 'Contact', action: () => window.location.href = "mailto:wearementozy@gmail.com" },
+    ],
+    legal: [
+        { label: 'Privacy Policy', action: () => {} },
+        { label: 'Terms of Service', action: () => {} },
+        { label: 'Cookie Policy', action: () => {} }
+    ]
   };
 
   return (
@@ -16,14 +32,17 @@ export function Footer() {
           
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
+            <div 
+                className="flex items-center gap-2 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => onNavigate('home')}
+            >
               <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 M
               </div>
               <span className="text-xl font-bold text-gray-900 tracking-tight">Mentozy</span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">
-              Democratizing mentorship for everyone. We connect ambitious learners with world-class experts to bridge the gap between education and career success.
+              Democratizing mentorship for everyone. We connect ambitious learners with world-class experts.
             </p>
             
             {/* Newsletter */}
@@ -38,7 +57,6 @@ export function Footer() {
               </button>
             </div>
 
-            {/* Contact Email */}
             <div className="flex items-center gap-2 text-sm text-gray-500 hover:text-amber-600 transition-colors">
               <Mail className="w-4 h-4" />
               <a href="mailto:wearementozy@gmail.com">wearementozy@gmail.com</a>
@@ -46,20 +64,16 @@ export function Footer() {
           </div>
 
           {/* Links Grid */}
-          <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
             <div>
               <h4 className="font-bold text-gray-900 mb-6">Platform</h4>
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.platform.map((link, i) => (
-                  <li key={i}><a href="#" className="hover:text-amber-600 transition-colors">{link}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-gray-900 mb-6">Resources</h4>
-              <ul className="space-y-4 text-sm text-gray-500">
-                {links.resources.map((link, i) => (
-                  <li key={i}><a href="#" className="hover:text-amber-600 transition-colors">{link}</a></li>
+                  <li key={i}>
+                      <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                          {link.label}
+                      </button>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -67,7 +81,11 @@ export function Footer() {
               <h4 className="font-bold text-gray-900 mb-6">Company</h4>
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.company.map((link, i) => (
-                  <li key={i}><a href="#" className="hover:text-amber-600 transition-colors">{link}</a></li>
+                   <li key={i}>
+                      <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                          {link.label}
+                      </button>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -75,7 +93,11 @@ export function Footer() {
               <h4 className="font-bold text-gray-900 mb-6">Legal</h4>
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.legal.map((link, i) => (
-                  <li key={i}><a href="#" className="hover:text-amber-600 transition-colors">{link}</a></li>
+                  <li key={i}>
+                      <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                          {link.label}
+                      </button>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -97,9 +119,6 @@ export function Footer() {
             </a>
             <a href="#" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
               <Instagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
-              <Github className="w-5 h-5" />
             </a>
           </div>
         </div>
