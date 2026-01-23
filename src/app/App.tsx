@@ -68,7 +68,7 @@ function App() {
         {currentPage === 'mentors' && <MentorsPage />}
         {currentPage === 'tracks' && <TracksPage />}
         {currentPage === 'about' && <AboutPage />}
-        {currentPage === 'contact' && <ContactPage />}
+        {currentPage === 'contact' && <ContactPage onNavigate={handleNavigate} />}
       </main>
 
       <Footer onNavigate={handleNavigate} />

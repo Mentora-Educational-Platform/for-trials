@@ -1,6 +1,11 @@
-import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Youtube, Briefcase } from 'lucide-react';
+import type { Page } from '../App';
 
-export function ContactPage() {
+interface ContactPageProps {
+  onNavigate?: (page: Page, sectionId?: string) => void;
+}
+
+export function ContactPage({ onNavigate }: ContactPageProps) {
   return (
     <div className="pt-24 pb-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-6">
@@ -16,8 +21,8 @@ export function ContactPage() {
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -25,23 +30,20 @@ export function ContactPage() {
                     <a href="mailto:wearementozy@gmail.com" className="font-medium hover:text-amber-400 transition-colors">wearementozy@gmail.com</a>
                   </div>
                 </div>
-                {/* <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500">
-                    <Phone className="w-5 h-5" />
+                
+                {/* Career CTA */}
+                <div 
+                  className="flex items-center gap-4 cursor-pointer group"
+                  onClick={() => onNavigate?.('careers')}
+                >
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
+                    <Briefcase className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Call us</p>
-                    <p className="font-medium">+91 98765 43210</p>
-                  </div>
-                </div>
-                 */}
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Visit us</p>
-                    <p className="font-medium">Bangalore, India</p>
+                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">Want to join the team?</p>
+                    <p className="font-medium text-amber-400 group-hover:text-amber-300 transition-colors underline decoration-amber-400/30 underline-offset-4">
+                      Check out our Career Page
+                    </p>
                   </div>
                 </div>
               </div>
