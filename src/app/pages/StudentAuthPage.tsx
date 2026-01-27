@@ -1,11 +1,7 @@
 import { GraduationCap, ArrowRight, User } from 'lucide-react';
-import type { Page } from '../App';
+import { Link } from 'react-router-dom';
 
-interface StudentAuthPageProps {
-    onNavigate: (page: Page) => void;
-}
-
-export function StudentAuthPage({ onNavigate }: StudentAuthPageProps) {
+export function StudentAuthPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
@@ -19,8 +15,8 @@ export function StudentAuthPage({ onNavigate }: StudentAuthPageProps) {
                 </div>
 
                 <div className="space-y-4">
-                    <button
-                        onClick={() => onNavigate('student-onboarding')}
+                    <Link
+                        to="/student-onboarding"
                         className="group w-full flex items-center justify-between p-5 bg-amber-50 border-2 border-amber-200 hover:bg-amber-100 hover:border-amber-300 rounded-2xl transition-all duration-200"
                     >
                         <div className="flex items-center gap-4">
@@ -33,10 +29,10 @@ export function StudentAuthPage({ onNavigate }: StudentAuthPageProps) {
                             </div>
                         </div>
                         <ArrowRight className="w-5 h-5 text-amber-600 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
 
-                    <button
-                        onClick={() => onNavigate('login')}
+                    <Link
+                        to="/login"
                         className="group w-full flex items-center justify-between p-5 bg-white border-2 border-gray-100 hover:border-gray-300 rounded-2xl transition-all duration-200"
                     >
                         <div className="text-left pl-2">
@@ -44,16 +40,16 @@ export function StudentAuthPage({ onNavigate }: StudentAuthPageProps) {
                             <p className="text-xs text-gray-500">I already have an account</p>
                         </div>
                         <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-gray-900 transition-colors" />
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="mt-10 text-center">
-                    <button
-                        onClick={() => onNavigate('signup')}
+                    <Link
+                        to="/signup"
                         className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
                     >
                         ← Back to role selection
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

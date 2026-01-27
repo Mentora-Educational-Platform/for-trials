@@ -1,10 +1,7 @@
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
-interface HeroSectionProps {
-  onNavigate?: (page: 'home' | 'careers' | 'mentors' | 'tracks' | 'about' | 'contact', sectionId?: string) => void;
-}
-
-export function HeroSection({ onNavigate }: HeroSectionProps) {
+export function HeroSection() {
   return (
     <section className="relative py-24 overflow-hidden bg-gradient-to-b from-white via-amber-50/40 to-white">
       <div className="container mx-auto px-6">
@@ -36,19 +33,19 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-6">
-              <button className="group inline-flex items-center gap-4 bg-amber-400 hover:bg-amber-500 text-gray-900 px-8 py-4 rounded-full font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
+              <Link to="/signup" className="group inline-flex items-center gap-4 bg-amber-400 hover:bg-amber-500 text-gray-900 px-8 py-4 rounded-full font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
                 Start learning for free
                 <span className="bg-white rounded-full p-2 group-hover:translate-x-1 transition-transform">
                   <ArrowRight className="w-4 h-4 text-gray-900" />
                 </span>
-              </button>
+              </Link>
 
-              <a
-                href="#login"
+              <Link
+                to="/login"
                 className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors underline underline-offset-4 decoration-gray-300"
               >
                 Already on Mentozy? Log in
-              </a>
+              </Link>
             </div>
           </div>
 

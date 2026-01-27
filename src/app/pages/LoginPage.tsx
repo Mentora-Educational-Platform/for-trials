@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
-import type { Page } from '../App';
+import { Link, useNavigate } from 'react-router-dom';
 
-interface LoginPageProps {
-    onNavigate: (page: Page) => void;
-}
-
-export function LoginPage({ onNavigate }: LoginPageProps) {
+export function LoginPage() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +12,8 @@ export function LoginPage({ onNavigate }: LoginPageProps) {
         e.preventDefault();
         // In a real app, this would handle authentication
         console.log('Login attempt:', { email, password });
-        alert('Login functionality coming soon!');
+        // Mock login success -> redirect to dashboard
+        navigate('/student-dashboard');
     };
 
     return (
@@ -23,10 +21,10 @@ export function LoginPage({ onNavigate }: LoginPageProps) {
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-xl">
                 <div className="text-center">
                     <div className="flex justify-center mb-6">
-                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate('home')}>
+                        <Link to="/" className="flex items-center gap-2 cursor-pointer">
                             <span className="text-2xl font-bold tracking-tight text-gray-900">Mentozy</span>
                             <div className="w-2 h-2 bg-amber-500 rounded-sm"></div>
-                        </div>
+                        </Link>
                     </div>
                     <h2 className="mt-6 text-3xl font-bold text-gray-900">Welcome back</h2>
                     <p className="mt-2 text-sm text-gray-600">
@@ -121,12 +119,12 @@ export function LoginPage({ onNavigate }: LoginPageProps) {
                 <div className="text-center mt-4">
                     <p className="text-sm text-gray-600">
                         Don't have an account?{' '}
-                        <button
-                            onClick={() => onNavigate('signup')}
+                        <Link
+                            to="/signup"
                             className="font-medium text-amber-600 hover:text-amber-500"
                         >
                             Sign up
-                        </button>
+                        </Link>
                     </p>
                 </div>
             </div>

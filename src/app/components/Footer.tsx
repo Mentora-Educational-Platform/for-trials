@@ -1,29 +1,26 @@
 import { memo } from 'react';
-import { Twitter, Linkedin, Instagram, Github, Send, Mail } from 'lucide-react';
-import type { Page } from '../App';
+import { Twitter, Linkedin, Instagram, Send, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-interface FooterProps {
-  onNavigate: (page: Page, sectionId?: string) => void;
-}
 
-export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
+export const Footer = memo(function Footer() {
   const links = {
     platform: [
-      { label: 'Browse Mentors', action: () => onNavigate('mentors') },
-      { label: 'Learning Tracks', action: () => onNavigate('tracks') },
-      { label: 'Success Stories', action: () => onNavigate('home', 'opportunities') },
-      { label: 'Pricing', action: () => onNavigate('home', 'pricing') }
+      { label: 'Browse Mentors', path: '/mentors' },
+      { label: 'Learning Tracks', path: '/tracks' },
+      { label: 'Success Stories', path: '/#opportunities' },
+      { label: 'Pricing', path: '/#pricing' }
     ],
     company: [
-      { label: 'About Us', action: () => onNavigate('about') },
-      { label: 'Careers', action: () => onNavigate('careers') },
-      { label: 'Contact', action: () => onNavigate('contact') },
-      { label: 'Become a Mentor', action: () => onNavigate('contact') },
+      { label: 'About Us', path: '/about' },
+      { label: 'Careers', path: '/careers' },
+      { label: 'Contact', path: '/contact' },
+      { label: 'Become a Mentor', path: '/contact' },
     ],
     legal: [
-      { label: 'Privacy Policy', action: () => { } },
-      { label: 'Terms of Service', action: () => { } },
-      { label: 'Cookie Policy', action: () => { } }
+      { label: 'Privacy Policy', path: '#' },
+      { label: 'Terms of Service', path: '#' },
+      { label: 'Cookie Policy', path: '#' }
     ]
   };
 
@@ -33,15 +30,15 @@ export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
 
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-1">
-            <div
+            <Link
+              to="/"
               className="flex items-center gap-2 mb-6 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => onNavigate('home')}
             >
               <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 M
               </div>
               <span className="text-xl font-bold text-gray-900 tracking-tight">Mentozy</span>
-            </div>
+            </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">
               Democratizing mentorship for everyone. We connect ambitious learners with world-class experts.
             </p>
@@ -69,9 +66,9 @@ export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.platform.map((link, i) => (
                   <li key={i}>
-                    <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                    <Link to={link.path} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto block">
                       {link.label}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -81,9 +78,9 @@ export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.company.map((link, i) => (
                   <li key={i}>
-                    <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                    <Link to={link.path} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto block">
                       {link.label}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -93,9 +90,9 @@ export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
               <ul className="space-y-4 text-sm text-gray-500">
                 {links.legal.map((link, i) => (
                   <li key={i}>
-                    <button onClick={link.action} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto">
+                    <a href={link.path} className="hover:text-amber-600 transition-colors text-left w-full sm:w-auto block">
                       {link.label}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -109,10 +106,10 @@ export const Footer = memo(function Footer({ onNavigate }: FooterProps) {
           </p>
 
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
+            <a href="https://x.com/wearementozy" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
+            <a href="https://www.linkedin.com/company/mentozy?trk=public_jobs_topcard_logo" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">
               <Linkedin className="w-5 h-5" />
             </a>
             <a href="#" className="text-gray-400 hover:text-amber-600 transition-colors hover:scale-110 transform">

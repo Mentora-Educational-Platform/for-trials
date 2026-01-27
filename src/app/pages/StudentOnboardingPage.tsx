@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
-import { ArrowRight, ArrowLeft, Check, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
-import type { Page } from '../App';
-
-interface StudentOnboardingPageProps {
-    onNavigate: (page: Page) => void;
-}
+import { useState } from 'react';
+import { ArrowRight, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 
-export function StudentOnboardingPage({ onNavigate }: StudentOnboardingPageProps) {
+export function StudentOnboardingPage() {
+    const navigate = useNavigate();
     const [step, setStep] = useState<Step>(1);
     const [formData, setFormData] = useState({
         fullName: '',
@@ -76,12 +73,12 @@ export function StudentOnboardingPage({ onNavigate }: StudentOnboardingPageProps
         else if (step === 4) setStep(5);
         else if (step === 5) {
             // Submit Logic would go here
-            onNavigate('student-dashboard');
+            navigate('/student-dashboard');
         }
     };
 
     const handleBack = () => {
-        if (step === 1) onNavigate('student-auth');
+        if (step === 1) navigate('/student-auth');
         else if (step === 2) setStep(1);
         else if (step === 3) setStep(2);
         else if (step === 4) setStep(3);
@@ -248,8 +245,8 @@ export function StudentOnboardingPage({ onNavigate }: StudentOnboardingPageProps
                                                     key={interest}
                                                     onClick={() => toggleInterest(interest)}
                                                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${formData.interests.includes(interest)
-                                                            ? 'bg-amber-100 border-amber-300 text-amber-800 shadow-sm'
-                                                            : 'bg-white border-gray-200 text-gray-600 hover:border-amber-200 hover:bg-gray-50'
+                                                        ? 'bg-amber-100 border-amber-300 text-amber-800 shadow-sm'
+                                                        : 'bg-white border-gray-200 text-gray-600 hover:border-amber-200 hover:bg-gray-50'
                                                         }`}
                                                 >
                                                     {interest}

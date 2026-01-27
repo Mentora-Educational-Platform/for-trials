@@ -1,17 +1,13 @@
-import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Youtube, Briefcase } from 'lucide-react';
-import type { Page } from '../App';
+import { Mail, Send, Linkedin, Twitter, Youtube, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-interface ContactPageProps {
-  onNavigate?: (page: Page, sectionId?: string) => void;
-}
-
-export function ContactPage({ onNavigate }: ContactPageProps) {
+export function ContactPage() {
   return (
     <div className="pt-24 pb-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-6">
-        
+
         <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-          
+
           {/* Info Side */}
           <div className="md:w-5/12 bg-gray-900 p-10 text-white flex flex-col justify-between">
             <div>
@@ -19,7 +15,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
               <p className="text-gray-400 mb-10 leading-relaxed">
                 Have questions about our mentorship programs or want to partner with us? We'd love to hear from you.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center gap-4 group">
                   <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
@@ -30,11 +26,11 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                     <a href="mailto:wearementozy@gmail.com" className="font-medium hover:text-amber-400 transition-colors">wearementozy@gmail.com</a>
                   </div>
                 </div>
-                
+
                 {/* Career CTA */}
-                <div 
+                <Link
+                  to="/careers"
                   className="flex items-center gap-4 cursor-pointer group"
-                  onClick={() => onNavigate?.('careers')}
                 >
                   <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
                     <Briefcase className="w-5 h-5" />
@@ -45,32 +41,32 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                       Check out our Career Page
                     </p>
                   </div>
-                </div>
+                </Link>
               </div>
 
               {/* Social Links */}
               <div className="mt-10 pt-8 border-t border-gray-800">
                 <p className="text-sm text-gray-400 mb-4">Follow us</p>
                 <div className="flex gap-4">
-                  <a 
-                    href="https://www.linkedin.com/company/mentozy?trk=public_jobs_topcard_logo" 
-                    target="_blank" 
+                  <a
+                    href="https://www.linkedin.com/company/mentozy?trk=public_jobs_topcard_logo"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-amber-600 hover:text-white transition-all"
                   >
                     <Linkedin className="w-5 h-5" />
                   </a>
-                  <a 
-                    href="https://x.com/wearementozy" 
-                    target="_blank" 
+                  <a
+                    href="https://x.com/wearementozy"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-amber-600 hover:text-white transition-all"
                   >
                     <Twitter className="w-5 h-5" />
                   </a>
-                  <a 
-                    href="https://www.youtube.com/@MentozyOfficial" 
-                    target="_blank" 
+                  <a
+                    href="https://www.youtube.com/@MentozyOfficial"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-amber-600 hover:text-white transition-all"
                   >
@@ -81,7 +77,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
             </div>
 
             <div className="mt-12 md:mt-0">
-               <p className="text-sm text-gray-500">© 2026 Mentozy Inc.</p>
+              <p className="text-sm text-gray-500">© 2026 Mentozy Inc.</p>
             </div>
           </div>
 

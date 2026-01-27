@@ -1,41 +1,40 @@
 import { Search, Menu } from 'lucide-react';
-import type { Page } from '../App';
+import { Link, NavLink } from 'react-router-dom';
 
-interface HeaderProps {
-  onNavigate: (page: Page, sectionId?: string) => void;
-  currentPage: Page;
-}
 
-export function Header({ onNavigate, currentPage }: HeaderProps) {
-  const navItems: { label: string; page: Page; section?: string }[] = [
-    { label: 'Home', page: 'home' },
-    { label: 'Mentors', page: 'mentors' },
-    { label: 'Tracks', page: 'tracks' },
-    { label: 'Careers', page: 'careers' },
-    { label: 'About', page: 'about' },
+export function Header() {
+
+  const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Mentors', path: '/mentors' },
+    { label: 'Tracks', path: '/tracks' },
+    { label: 'Careers', path: '/careers' },
+    { label: 'About', path: '/about' },
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60 transition-all duration-300">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div
+          <Link
+            to="/"
             className="flex items-center gap-2 cursor-pointer group select-none"
-            onClick={() => onNavigate('home')}
           >
             <span className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-gray-700 transition-colors">Mentozy</span>
             <div className="w-2 h-2 bg-amber-500 rounded-sm group-hover:rotate-45 transition-transform duration-300"></div>
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <button
+              <NavLink
                 key={item.label}
-                onClick={() => onNavigate(item.page, item.section)}
-                className={`text-sm font-medium transition-colors ${currentPage === item.page ? 'text-amber-600' : 'text-gray-600 hover:text-amber-600'}`}
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${isActive ? 'text-amber-600' : 'text-gray-600 hover:text-amber-600'}`
+                }
               >
                 {item.label}
-              </button>
+              </NavLink>
             ))}
           </nav>
 
@@ -48,19 +47,19 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
               <Menu className="w-6 h-6" />
             </button>
 
-            <button
-              onClick={() => onNavigate('login')}
+            <Link
+              to="/login"
               className="hidden md:block px-4 py-2.5 text-gray-600 font-bold hover:text-gray-900 transition-colors"
             >
               Log In
-            </button>
+            </Link>
 
-            <button
-              onClick={() => onNavigate('signup')}
+            <Link
+              to="/signup"
               className="hidden md:block px-5 py-2.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-bold rounded-xl transition-all shadow-md hover:shadow-lg"
             >
               Sign Up
-            </button>
+            </Link>
           </div>
         </div>
       </div>

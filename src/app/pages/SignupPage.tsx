@@ -1,20 +1,16 @@
 import { GraduationCap, Briefcase, ChevronRight } from 'lucide-react';
-import type { Page } from '../App';
+import { Link } from 'react-router-dom';
 
-interface SignupPageProps {
-    onNavigate: (page: Page) => void;
-}
-
-export function SignupPage({ onNavigate }: SignupPageProps) {
+export function SignupPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-4xl w-full space-y-10">
                 <div className="text-center">
                     <div className="flex justify-center mb-6">
-                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate('home')}>
+                        <Link to="/" className="flex items-center gap-2 cursor-pointer">
                             <span className="text-2xl font-bold tracking-tight text-gray-900">Mentozy</span>
                             <div className="w-2 h-2 bg-amber-500 rounded-sm"></div>
-                        </div>
+                        </Link>
                     </div>
                     <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Welcome to Mentozy</h1>
                     <p className="mt-3 text-lg text-gray-600">
@@ -24,8 +20,8 @@ export function SignupPage({ onNavigate }: SignupPageProps) {
 
                 <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                     {/* Student Card */}
-                    <button
-                        onClick={() => onNavigate('student-auth')}
+                    <Link
+                        to="/student-auth"
                         className="group relative flex flex-col items-center p-10 bg-white border-2 border-gray-100 rounded-3xl hover:border-amber-400 hover:shadow-xl hover:shadow-amber-500/5 transition-all duration-300 text-center"
                     >
                         <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -36,7 +32,7 @@ export function SignupPage({ onNavigate }: SignupPageProps) {
                         <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity text-amber-600 font-semibold flex items-center gap-2">
                             Continue <ChevronRight className="w-4 h-4" />
                         </div>
-                    </button>
+                    </Link>
 
                     {/* Teacher/Mentor Card */}
                     <button
@@ -56,7 +52,7 @@ export function SignupPage({ onNavigate }: SignupPageProps) {
 
                 <div className="text-center">
                     <p className="text-sm text-gray-500">
-                        Already have an account? <button onClick={() => onNavigate('login')} className="font-semibold text-gray-900 hover:text-amber-600 underline decoration-gray-300 underline-offset-4">Log in</button>
+                        Already have an account? <Link to="/login" className="font-semibold text-gray-900 hover:text-amber-600 underline decoration-gray-300 underline-offset-4">Log in</Link>
                     </p>
                 </div>
             </div>
